@@ -1,0 +1,60 @@
+@import '../../../shared/styles/variables';
+
+:host {
+  display: flex;
+  height: 100%;
+  flex: 1;
+
+  .well-equipments-list {
+    min-width: 190px;
+    width: 190px;
+  }
+
+  .flowlines-list {
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+
+  .flowlines-list:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    border-bottom: solid 1px $equipment-item-border-bottom-color;
+  }
+
+  .equipments-list-title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 70px;
+    padding: 0 6px;
+    cursor: pointer;
+
+    &.selected {
+      background: $selected-facility-equip-color;
+    }
+
+    &-content {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      border-bottom: solid 1px $equipment-item-border-bottom-color;
+      padding: 0 7px;
+      font-size: .875rem;
+
+      &__icon {
+        background-repeat: no-repeat;
+        background-position: center;
+        height: inherit;
+        margin-right: 10px;
+        background-size: 13px;
+        min-width: 15px;
+        background-image: url("../../../../assets/icons/facility-wells-icon.svg");
+      }
+    }
+  }
+}
+

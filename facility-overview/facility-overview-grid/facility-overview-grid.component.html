@@ -1,0 +1,19 @@
+<ag-grid-angular
+  class="ag-theme-balham grid-block"
+  [rowData]="rowData"
+  [columnDefs]="columnsDef"
+  [suppressCellSelection]="true"
+  [suppressRowClickSelection]="true"
+  [defaultColDef]="{ resizable: true, sortable: true }"
+  [suppressDragLeaveHidesColumns]="true"
+  [domLayout]="'autoHeight'"
+  [frameworkComponents]="frameWorkComponents"
+  (firstDataRendered)="onFirstDataRendered()"
+  (gridReady)="onGridReady($event)"
+  (gridSizeChanged)="onGridSizeChanged()"
+  editType="fullRow"
+  rowSelection="single"
+  rowMultiSelectWithClick="true"
+  headerHeight="50"
+>
+</ag-grid-angular>

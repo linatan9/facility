@@ -1,0 +1,9 @@
+<div
+  *ngFor="let breadcrumb of facilityBreadcrumbs; let i = index"
+  class="breadcrumb"
+  [ngClass]="{'active': i + 1 !== facilityBreadcrumbs.length}"
+  (click)="changeBreadcrumbs(i)"
+>
+  <i class="mdi mdi-chevron-right"></i>
+  {{ breadcrumb?.title }}
+</div>

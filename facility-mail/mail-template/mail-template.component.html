@@ -1,0 +1,4 @@
+<mat-form-field floatLabel="always">
+  <textarea matInput placeholder="E-Mail Subject:" [formControl]="facilityMailForm.get('subject')" [rows]="1"></textarea>
+</mat-form-field>
+<quill-editor [modules]="modules" [formControl]="facilityMailForm.get('body')"></quill-editor>

@@ -1,0 +1,23 @@
+<div class="title">{{ tableTitle }}</div>
+<div class="facility-approves">
+  <ag-grid-angular
+    #agGrid
+    class="ag-theme-balham grid-block"
+    [rowData]="approves"
+    [columnDefs]="columnDefs"
+    [getRowHeight]="getRowHeight"
+    [suppressCellSelection]="true"
+    [suppressDragLeaveHidesColumns]="true"
+    suppressRowClickSelection="true"
+    [frameworkComponents]="frameworkComponents"
+    editType="fullRow"
+    [suppressContextMenu]="true"
+    rowSelection="single"
+    rowMultiSelectWithClick="true"
+    (firstDataRendered)="onFirstDataRendered()"
+    (gridReady)="onGridReady($event)"
+    (gridSizeChanged)="onGridSizeChanged()"
+    headerHeight="32"
+  >
+  </ag-grid-angular>
+</div>

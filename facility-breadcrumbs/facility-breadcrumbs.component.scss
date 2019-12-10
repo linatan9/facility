@@ -1,0 +1,22 @@
+@import "../../shared/styles/variables";
+
+:host {
+  display: flex;
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    font-size: .75rem;
+
+    &.active {
+      color: $primary-blue;
+      cursor: pointer;
+    }
+
+    .mdi {
+      font-size: 1rem;
+      color: $primary-blue;
+      margin: 0 15px 0 7px;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@import "../../shared/styles/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - #{$default-header-height} - #{$main-footer-height});
+
+  .facility-header {
+    display: flex;
+    align-items: center;
+    height: $facility-header-height;
+    min-height: $facility-header-height;
+    background: $sub-header-color;
+    padding: 0 30px;
+
+    .back-navigation {
+      display: flex;
+      line-height: 1rem;
+      color: $primary-blue;
+      padding-right: 19px;
+      margin-right: 19px;
+      border-right: solid 1px $facility-gray-font;
+      cursor: pointer;
+
+      .mdi {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .facility-name {
+    width: 100%;
+    padding: 0 30px;
+    height: $facility-name-subheader-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    color: $table-cell-color;
+  }
+
+  .facility-equipments-container {
+    padding: 0 30px;
+    height: 100%;
+    flex: 1;
+
+    mat-tab-group {
+      height: 100%;
+
+      ::ng-deep .mat-tab-body-wrapper {
+        height: 100%;
+        padding: 0;
+        margin: 15px 0;
+        border: solid 1px $light-gray;
+      }
+    }
+  }
+}

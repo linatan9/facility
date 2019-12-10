@@ -1,0 +1,72 @@
+<header class="facility-header">
+  <div class="back-navigation" (click)="navigateToFacilitiesList()"><i class="mdi mdi-chevron-left"></i> Back</div>
+  <pna-ui-facilities-list-search
+    [facilities]="facilities"
+    [selectedFacilityId]="selectedFacilityId"
+    (facilityChange)="onFacilityChanged($event)">
+  </pna-ui-facilities-list-search>
+  <pna-ui-facility-breadcrumbs></pna-ui-facility-breadcrumbs>
+</header>
+
+<section class="facility-name">
+  <div>
+    {{ selectedFacility?.name }}
+  </div>
+  <button
+    class="apc-button apc-button--primary medium"
+    (click)="openMailModal()">
+    Notify Groups
+  </button>
+</section>
+<section class="facility-equipments-container">
+  <mat-tab-group (selectedIndexChange)="onTabChange($event)" [selectedIndex]="selectedTabIndex">
+    <mat-tab label="Overview">
+      <pna-ui-facility-overview
+        [facility]="selectedFacility"
+        *ngIf="selectedTabIndex === 0">
+      </pna-ui-facility-overview>
+    </mat-tab>
+
+    <mat-tab label="Wells ({{ selectedFacility?.wells.content.length }})">
+      <pna-ui-facility-wells-list
+        *ngIf="selectedTabIndex === 1"
+        [equipment]="selectedFacility?.wells">
+      </pna-ui-facility-wells-list>
+    </mat-tab>
+    <mat-tab label="Separators ({{ selectedFacility?.separators.content.length }})">
+      <pna-ui-equipment-details-table
+        *ngIf="selectedTabIndex === 2"
+        [title]="facilityEquipmentTypes.separators"
+        [facilityEquipment]="selectedFacility?.separators">
+      </pna-ui-equipment-details-table>
+    </mat-tab>
+    <mat-tab label="Meters ({{ selectedFacility?.meters.content.length }})">
+      <pna-ui-equipment-details-table
+        *ngIf="selectedTabIndex === 3"
+        [title]="facilityEquipmentTypes.meters"
+        [facilityEquipment]="selectedFacility?.meters">
+      </pna-ui-equipment-details-table>
+    </mat-tab>
+    <mat-tab label="Oil Tanks ({{ selectedFacility?.oilTanks.content.length }})">
+      <pna-ui-equipment-details-table
+        *ngIf="selectedTabIndex === 4"
+        [title]="facilityEquipmentTypes.oilTanks"
+        [facilityEquipment]="selectedFacility?.oilTanks">
+      </pna-ui-equipment-details-table>
+    </mat-tab>
+    <mat-tab label="Water Tanks ({{ selectedFacility?.waterTanks.content.length }})">
+      <pna-ui-equipment-details-table
+        *ngIf="selectedTabIndex === 5"
+        [title]="facilityEquipmentTypes.waterTanks"
+        [facilityEquipment]="selectedFacility?.waterTanks">
+      </pna-ui-equipment-details-table>
+    </mat-tab>
+    <mat-tab label="Other Equipment ({{ selectedFacility?.otherEquip.content.length }})">
+      <pna-ui-equipment-details-table
+        *ngIf="selectedTabIndex === 6"
+        [title]="facilityEquipmentTypes.otherEquip"
+        [facilityEquipment]="selectedFacility?.otherEquip">
+      </pna-ui-equipment-details-table>
+    </mat-tab>
+  </mat-tab-group>
+</section>

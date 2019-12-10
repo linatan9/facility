@@ -1,0 +1,109 @@
+@import "../../../shared/styles/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 75%;
+
+  .mail-groups-select {
+    ng-select {
+      padding: 0 20px;
+
+      ::ng-deep .ng-value {
+        border-radius: 10.5px;
+        color: $font-gray;
+        background-color: $select-background;
+
+        .ng-value-label {
+          padding: 0 8px;
+        }
+
+        .ng-value-icon {
+          color: $font-gray;
+        }
+      }
+
+      ::ng-deep .ng-dropdown-panel.ng-select-bottom {
+        top: 100%;
+      }
+    }
+  }
+
+  .selected-equipment {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+
+    .selected-equipment-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+
+      .quantity {
+        color: $light-gray;
+      }
+    }
+
+    .selected-equipment-tree {
+      height: 90%;
+      overflow-y: auto;
+      margin: 0 20px;
+      border: solid 1px $loader-background-border;
+
+      mat-tree {
+        ::ng-deep .mat-tree-node {
+          min-height: 2rem;
+        }
+      }
+
+      .expand-button {
+        border: none;
+        background: none;
+        outline: none;
+        cursor: pointer;
+
+        .mdi {
+          color: $light-gray;
+        }
+      }
+
+      .expandable-leaf {
+        color: $black;
+        font-weight: 500;
+
+        .selected-quip-sum {
+          color: $light-gray;
+          font-weight: 400;
+        }
+      }
+
+      .not-expandable-leaf {
+        display: flex;
+        align-items: center;
+
+        .equip-data {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          margin-left: 10px;
+
+          .type-description {
+            color: $black;
+            font-weight: 500;
+          }
+
+          .classes-description {
+            color: $light-gray;
+          }
+        }
+      }
+
+      .item-indicator {
+        width: 5px;
+        height: 5px;
+        background-color: $light-gray;
+      }
+    }
+  }
+}

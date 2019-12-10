@@ -1,0 +1,6 @@
+<div class="bordered-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+  <ng-content select="[not-scrollable]"></ng-content>
+  <perfect-scrollbar class="scroll-container" [config]="config" [scrollIndicators]="true">
+    <ng-content select="[scrollable]"></ng-content>
+  </perfect-scrollbar>
+</div>

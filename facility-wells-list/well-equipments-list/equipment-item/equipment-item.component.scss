@@ -1,0 +1,90 @@
+@import '../../../../shared/styles/variables';
+
+:host {
+  width: 100%;
+  min-height: 50px;
+
+  .equipment {
+    display: flex;
+    cursor: pointer;
+    height: inherit;
+    min-height: inherit;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+    font-size: .875rem;
+
+    &_shared-well {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      font-size: 0.75rem;
+      padding-left: 3rem;
+
+      &_title {
+        color: $shared-well-title-font-color;
+      }
+
+      &_id {
+        color: $primary-blue;
+        text-decoration: underline;
+      }
+    }
+    &_icon {
+      background-repeat: no-repeat;
+      background-position: top;
+      height: inherit;
+      margin-top: 4px;
+      margin-right: 10px;
+      background-size: 13px;
+      min-width: 15px;
+      min-height: 15px;
+    }
+    &__wells-icon {
+      background-image: url("../../../../../assets/icons/facility-wells-icon.svg");
+    }
+    &__separators-icon {
+      background-image: url("../../../../../assets/icons/facility-separators-icon.svg");
+    }
+    &__meters-icon {
+      background-image: url("../../../../../assets/icons/facility-meters-icon.svg");
+    }
+    &__oilTanks-icon {
+      background-image: url("../../../../../assets/icons/facility-oilTanks-icon.svg");
+    }
+    &__waterTanks-icon {
+      background-image: url("../../../../../assets/icons/facility-waterTanks-icon.svg");
+    }
+    &__otherEquip-icon {
+      background-image: url("../../../../../assets/icons/other-equipments-icon.svg");
+    }
+    &__flowlines-icon {
+       background-image: url("../../../../../assets/icons/facility-flowlines-icon.svg");
+    }
+    &__pumpingUnits-icon {
+      background-image: url("../../../../../assets/icons/facility-wells-icon.svg");
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      &_title-data {
+        display: flex;
+        flex-direction: row;
+        &__equip-number {
+          color: $facility-gray-font;
+        }
+      }
+      &__crew-on {
+        font-size: 0.75rem;
+        color: $facility-gray-font;
+      }
+    }
+  }
+}
+
+.selected-equipment {
+  background: $selected-facility-equip-color;
+}

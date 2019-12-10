@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 75%;
+
+  quill-editor {
+    display: flex;
+    flex-direction: column;
+    height: 85%;
+    padding: 0 20px;
+  }
+
+  mat-form-field {
+    width: 100%;
+    padding: 20px 20px 0;
+
+    textarea {
+      resize: none;
+    }
+  }
+}

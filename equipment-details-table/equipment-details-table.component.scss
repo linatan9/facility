@@ -1,0 +1,62 @@
+@import "../../shared/styles/variables";
+
+:host {
+  display: block;
+  height: 100%;
+  padding: 20px 0 20px 20px;
+  flex: 1;
+  overflow-y: auto;
+
+  .equipment-table-container {
+    height: 100%;
+  }
+
+  pna-ui-facility-column-decoration {
+    ::ng-deep {
+      .bordered-container {
+        border: none;
+      }
+      .ps-content {
+        height: 84%;
+      }
+    }
+  }
+
+  .scrollable-content {
+    padding-right: 20px;
+    height: 100%;
+  }
+
+  .equip-title {
+    font-size: .875rem;
+    color: $black;
+    margin-bottom: 8px;
+
+    .equip-number {
+      color: $equipment-titles-number-color;
+    }
+  }
+
+  .grid-block {
+    width: 100%;
+    height: 97%;
+    background: $mat-tab-body-bkg;
+
+    ::ng-deep {
+      .ag-row-last {
+        border-bottom: solid 1px $table-cell-border-color;
+      }
+      .ag-center-cols-viewport {
+        overflow-x: hidden;
+      }
+      .ag-status-bar {
+        border: none;
+      }
+    }
+  }
+
+  pna-ui-facility-edit-buttons {
+    display: block;
+    margin: 20px 0;
+  }
+}

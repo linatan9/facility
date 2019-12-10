@@ -1,0 +1,35 @@
+<pna-ui-facility-column-decoration class="equipment-details">
+  <div scrollable class="scrollable-content">
+    <div class="equip-title">
+      <span>{{ title }} </span>
+      <span class="equip-number">({{ facilityEquipment?.content.length }})</span>
+    </div>
+    <div class="equipment-table-container">
+      <ag-grid-angular
+        #agGrid
+        class="ag-theme-balham grid-block"
+        [rowData]="equipmentsGridData"
+        [columnDefs]="columnDefs"
+        [frameworkComponents]="frameworkComponents"
+        [context]="context"
+        rowSelection="single"
+        rowMultiSelectWithClick="true"
+        suppressRowClickSelection="true"
+        headerHeight="32"
+        [suppressContextMenu]="true"
+        [suppressCellSelection]="true"
+        [suppressDragLeaveHidesColumns]="true"
+        (firstDataRendered)="onFirstDataRendered()"
+        (rowDataChanged)="onRowDataChanged()"
+        (gridReady)="onGridReady($event)"
+        (gridSizeChanged)="onGridSizeChanged()"
+      >
+      </ag-grid-angular>
+      <pna-ui-facility-edit-buttons class="equipment-table-container_action-buttons"
+        (update)="updateData()"
+        (reset)="resetData()"
+        [isUpdateDisabled]="facilityEquipmentsForm?.invalid"
+      ></pna-ui-facility-edit-buttons>
+    </div>
+  </div>
+</pna-ui-facility-column-decoration>

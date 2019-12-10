@@ -1,0 +1,17 @@
+<div class="equipment" (click)="onSelectEquip()" [ngClass]="{'selected-equipment': selectedFlowlineId === equipment.id}">
+  <div class="equipment_icon equipment__{{equipType}}-icon"></div>
+  <div class="equipment-info">
+    <div class="equipment-info_title-data">
+      <span class="equipment-info_title-data__name">{{ facilityEquipTypes[equipType] }}</span>&nbsp;
+      <span class="equipment-info_title-data__name">{{ equipment?.id }}</span>&nbsp;
+    </div>
+  </div>
+  <div class="equipment_shared-well" *ngIf="equipment?.wells && equipment?.wells.length !== 0">
+    <span class="equipment_shared-well_title">Shared with WINS#</span>
+    <ng-container *ngFor="let well of equipment?.wells">
+      <span class="equipment_shared-well_id" (click)="onFlowlineWellClick(well, $event)">
+        {{ well.id }}
+      </span>
+    </ng-container>
+  </div>
+</div>

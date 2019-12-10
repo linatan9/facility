@@ -1,0 +1,91 @@
+@import '../../../shared/styles/variables';
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  .facility-well-info {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    position: relative;
+    height: 100%;
+
+    &_title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: $facility-sidebar-title-font-size;
+      color: $font-dark-gray;
+    }
+
+    &_details {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+      max-width: 450px;
+
+      .facility-well-info_general-info {
+        width: 100%;
+        display: flex;
+        margin-bottom: 10px;
+
+        .well-number {
+          width: 25%;
+          margin-right: 30px;
+        }
+
+        .well-name {
+          width: 67%;
+        }
+      }
+    }
+
+    .well-comment {
+      margin-bottom: 10px;
+    }
+
+    &-status-, &-status-rejected, &-status-approved, &-status-pending {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-left: 0.5rem;
+      position: absolute;
+    }
+
+    &-status- {
+      background: $status-partially-null;
+    }
+
+    &-status-rejected {
+      background: $status-rejected;
+    }
+
+    &-status-approved {
+      background: $status-approved;
+    }
+
+    &-status-pending {
+      background: $status-partially-approved;
+    }
+  }
+
+  ::ng-deep mat-form-field {
+    .mat-form-field-wrapper {
+      .mat-form-field-flex {
+        .mat-form-field-infix {
+          textarea {
+            resize: none;
+            white-space: normal;
+          }
+        }
+      }
+    }
+  }
+
+  pna-ui-facility-edit-buttons {
+    margin: 20px 0;
+  }
+}
+

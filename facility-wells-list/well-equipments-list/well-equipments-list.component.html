@@ -1,0 +1,51 @@
+<div class="well-equipments-list">
+  <pna-ui-facility-column-decoration>
+    <div not-scrollable class="equipments-list-title" (click)="openDetails()" [ngClass]="{'selected': isDetailedInfoSelected}">
+      <div class="equipments-list-title-content">
+        <div class="equipments-list-title-content__icon"></div>
+        <span class="equipments-list-title-content__title">
+          Well Overview
+        </span>
+      </div>
+    </div>
+    <div scrollable *ngIf="facility">
+      <div class="flowlines-list" *ngIf="facility.flowlines && facility.flowlines.length !== 0">
+        <pna-ui-flowline-item  *ngFor="let flowline of facility.flowlines"
+                               [equipment]="flowline"
+                               [selectedFlowlineId]="selectedFlowlineId"
+                               [equipType]="'flowlines'"
+                               (selectFlowline)="showFlowlineDetails($event)"
+                               (selectedFlowlineWell)="onSelectedFlowlineWell($event)"
+        ></pna-ui-flowline-item>
+      </div>
+      <pna-ui-equipment-item *ngFor="let equipType of orderedEquipTypes"
+                             [equipment]="getEquipmentsDetails(equipType)"
+                             [equipType]="equipType"
+                             [selectedEquipType]="selectedEquipType"
+                             (selectEquip)="showEquipmentList($event)"
+      ></pna-ui-equipment-item>
+    </div>
+  </pna-ui-facility-column-decoration>
+</div>
+
+<pna-ui-equipment-details-table
+  *ngIf="selectedEquipType"
+  [title]="facilityEquipmentTypes[selectedEquipType]"
+  [facilityEquipment]="facility[selectedEquipType]">
+</pna-ui-equipment-details-table>
+
+<pna-ui-facility-well-details
+  *ngIf="isDetailedInfoSelected"
+  [facilityWell]="facility">
+</pna-ui-facility-well-details>
+
+<pna-ui-flowline-details
+  *ngIf="selectedFlowlineId"
+  [wellId]="facility.id"
+  [flowline]="selectedFlowline"
+  [facilityWells]="facilityWells">
+</pna-ui-flowline-details>
+
+
+
+

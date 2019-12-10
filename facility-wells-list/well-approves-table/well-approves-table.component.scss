@@ -1,0 +1,23 @@
+@import "../../../shared/styles/variables";
+
+:host {
+  .title {
+    margin: 2rem 0rem 1rem;
+  }
+
+  .facility-approves {
+    width: 100%;
+    height: $facility-approves-table-height;
+
+    .grid-block {
+      width: 100%;
+      height: 100%;
+
+      ::ng-deep {
+        .ag-row-last {
+          border-bottom: solid 1px $table-cell-border-color;
+        }
+      }
+    }
+  }
+}

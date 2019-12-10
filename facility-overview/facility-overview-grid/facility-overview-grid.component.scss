@@ -1,0 +1,19 @@
+@import "../../../shared/styles/variables";
+
+
+.grid-block {
+  width: 100%;
+  //height: 250px;
+  background: transparent;
+  ::ng-deep {
+    .ag-row-last {
+      border-bottom: solid 1px $table-cell-border-color;
+    }
+    .ag-center-cols-viewport {
+      overflow-x: hidden;
+    }
+    .ag-status-bar {
+      border: none;
+    }
+  }
+}

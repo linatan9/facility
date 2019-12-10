@@ -1,0 +1,36 @@
+<div class="facility-overview">
+  <pna-ui-facility-overview-general-data-fields [facility]="facility"></pna-ui-facility-overview-general-data-fields>
+  <pna-ui-facility-column-decoration class="equipment-details">
+    <div scrollable class="scrollable-content">
+      <mat-accordion [multi]="true">
+        <mat-expansion-panel (opened)="isWildlifeOpen = true"
+                             (closed)="isWildlifeOpen = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>Wildlife</mat-panel-title>
+            <mat-panel-description class="panel-status-title">{{ isWildlifeOpen ? 'Hide' : 'Show' }}</mat-panel-description>
+          </mat-expansion-panel-header>
+          <pna-ui-facility-overview-grid [columnsDef]="columnWildlifeDefs"
+                                         [frameWorkComponents]="wildlifeFrameworkComponents"
+                                         [rowData]="wildLifeData"
+          ></pna-ui-facility-overview-grid>
+         </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="isLanduseOpen = true"
+                             (closed)="isLanduseOpen = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>Land Use</mat-panel-title>
+            <mat-panel-description class="panel-status-title">{{ isLanduseOpen ? 'Hide' : 'Show' }}</mat-panel-description>
+          </mat-expansion-panel-header>
+          <pna-ui-facility-overview-grid [columnsDef]="columnLandUseDefs"
+                                         [frameWorkComponents]="landuseFrameworkComponents"
+                                         [rowData]="landUseData"
+          ></pna-ui-facility-overview-grid>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </div>
+  </pna-ui-facility-column-decoration>
+
+</div>

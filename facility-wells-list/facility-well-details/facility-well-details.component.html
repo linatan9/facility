@@ -1,0 +1,40 @@
+<pna-ui-facility-column-decoration class="well-details">
+  <div scrollable class="scrollable-content">
+
+    <div class="facility-well-info">
+      <div class="facility-well-info_title">
+        <span>{{ facilityWell?.name }} {{ facilityWell?.id }}</span>
+      </div>
+      <div class="facility-well-info_details">
+        <div class="facility-well-info_general-info">
+          <mat-form-field floatLabel="always" class="well-number">
+            <input matInput readonly placeholder="{{ 'Well Number' }}" value="{{ facilityWell?.id }}">
+          </mat-form-field>
+          <mat-form-field floatLabel="always" class="well-name">
+            <input matInput readonly placeholder="{{ 'Well Name' }}" value="{{facilityWell?.name }}">
+          </mat-form-field>
+        </div>
+        <mat-form-field floatLabel="always" class="well-comment">
+          <textarea matInput placeholder="{{ 'Abandonment comments' }}" [formControl]="wellForm?.get('abdn').get('comment')"></textarea>
+          <mat-error *ngIf="wellForm?.get('abdn').get('comment').hasError('maxlength')">
+            Comment should be less than 500 symbols
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <pna-ui-well-approves-table
+        [approves]="facilityWell?.cutCapApprovals"
+        [tableTitle]="facilityApprovesTableTitles.CUT_CAP">
+      </pna-ui-well-approves-table>
+      <pna-ui-well-approves-table
+        [approves]="facilityWell?.flowlineRemovalApprovals"
+        [tableTitle]="facilityApprovesTableTitles.FLOWLINE_REMOVAL">
+      </pna-ui-well-approves-table>
+      <pna-ui-facility-edit-buttons
+        (update)="update()"
+        (reset)="reset()"
+        [isUpdateDisabled]="wellForm.invalid">
+      </pna-ui-facility-edit-buttons>
+    </div>
+
+  </div>
+</pna-ui-facility-column-decoration>

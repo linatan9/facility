@@ -1,0 +1,51 @@
+@import "../../shared/styles/variables";
+
+
+:host {
+  .facility-overview {
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+    height: 100%;
+  }
+
+  .scrollable-content {
+    padding-right: 20px;
+    height: 100%;
+  }
+
+  .panel-status-title {
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+
+  ::ng-deep {
+    .mat-expansion-panel:last-of-type {
+      border-bottom-right-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+    mat-expansion-panel {
+      background: transparent;
+      border: none;
+      border-bottom: 2px $facility-overview-mat-panel-border-color solid;
+      border-radius: 0;
+    }
+    .mat-expansion-indicator {
+      position: relative;
+      border: 7px solid transparent;
+      border-top: 8px solid $facility-overview-mat-panel-indicator-color;
+      margin-top: 15px;
+      transform-origin: center top;
+    }
+
+    .mat-expansion-indicator::after {
+      content: '';
+      position: absolute;
+      border: transparent;
+    }
+  }
+  pna-ui-facility-overview-general-data-fields {
+    width: 30%;
+    margin-right: 3rem;
+  }
+}

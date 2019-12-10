@@ -1,0 +1,32 @@
+@import "../../shared/styles/variables";
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  .bordered-container {
+    height: 100%;
+    border-right: solid 2px $facility-column-border-color;
+    display: flex;
+    flex-direction: column;
+  }
+
+  perfect-scrollbar.ps-show-active {
+    ::ng-deep .ps.ps--active-y {
+      .ps-overlay:not(.ps-at-top) {
+        .ps-indicator-top {
+          opacity: 0;
+        }
+      }
+    }
+
+    ::ng-deep .ps.ps--active-x {
+      .ps-overlay:not(.ps-at-right) {
+        .ps-indicator-right {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

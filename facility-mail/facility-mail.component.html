@@ -1,0 +1,29 @@
+<header>
+  <div class="facility-mail-header">
+    <div class="facility-mail-header-title">Notify Groups</div>
+    <mat-icon (click)="closeDialog()" class="facility-mail-header-close">close</mat-icon>
+  </div>
+  <div *ngIf="isMailGroupSelectionView()" class="step-indicator">Step 1 of 2</div>
+  <div *ngIf="isMailTemplateView()" class="step-indicator">Step 2 of 2</div>
+</header>
+
+<pna-ui-mail-group-select
+  *ngIf="isMailGroupSelectionView()"
+  [facility]="facility"
+  [mailGroupsControl]="facilityMailForm.get('to')">
+</pna-ui-mail-group-select>
+
+<pna-ui-mail-template
+  *ngIf="isMailTemplateView()"
+  [facility]="facility"
+  [facilityMailForm]="facilityMailForm">
+</pna-ui-mail-template>
+
+<div class="error-message" *ngIf="sendMailErrorMessage">{{ sendMailErrorMessage }}</div>
+
+<footer class="action-buttons">
+  <button *ngIf="isMailTemplateView()" class="apc-button apc-button--transparent small" (click)="setMailGroupSelectionView()">Back</button>
+  <button class="apc-button apc-button--transparent small cancel" (click)="closeDialog()">Cancel</button>
+  <button *ngIf="isMailGroupSelectionView()" class="apc-button apc-button--primary small" (click)="setMailTemplateView()">Next</button>
+  <button *ngIf="isMailTemplateView()" class="apc-button apc-button--primary small" (click)="sendMail()">Send</button>
+</footer>

@@ -1,0 +1,57 @@
+@import "../../../shared/styles/variables";
+
+:host {
+  width: 235px;
+
+  ng-select {
+    padding: 0;
+
+    ::ng-deep .ng-select-container {
+      display: flex;
+      align-items: center;
+      min-height: 0;
+      height: 25px;
+      background: $white;
+      border-radius: 2px;
+      padding: 0 5px;
+
+      &:after {
+        border: none;
+      }
+
+      .ng-value-container {
+        padding: 0;
+        border: none;
+        height: 100%;
+
+        .ng-value {
+          max-width: 95%;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 26px;
+        }
+
+        .ng-input {
+          top: 0;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          padding: 0 5px;
+        }
+      }
+
+      .ng-clear-wrapper, .ng-arrow-wrapper {
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+    }
+
+    ::ng-deep ng-dropdown-panel.ng-dropdown-panel.ng-select-bottom{
+      top: 100%;
+    }
+  }
+}

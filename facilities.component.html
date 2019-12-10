@@ -1,0 +1,33 @@
+<div class="facilities-container">
+  <div class="facilities-list-container">
+
+    <div class="facility-header">
+      <div class="facility-header__label">
+        <span class="facility-label" *ngIf="isGridSwitcherByFacility">Select a facility</span>
+        <span class="facility-label" *ngIf="isGridSwitcherByWell">Select a well</span>
+      </div>
+      <div class="facility-header__switcher">
+        <a class="facility-switcher" *ngIf="isGridSwitcherByFacility" (click)="getWellShortList(true)">View By Well</a>
+        <a class="facility-switcher" *ngIf="isGridSwitcherByWell" (click)="getFacilitiesList(true)">View By Facility</a>
+      </div>
+    </div>
+
+    <pna-ui-equipment-abandonment-filters
+      [wellShortInfoList]="shortWellSelectOptions"
+      [facilities]="facilitySelectOptions"
+      [switcherType]="gridSwitcher"
+      (filterChange)="onFilterChange($event)"
+    >
+    </pna-ui-equipment-abandonment-filters>
+
+    <pna-ui-facilities-list-grid
+      *ngIf="isGridSwitcherByFacility"
+      [facilities]="facilities"
+    ></pna-ui-facilities-list-grid>
+
+    <pna-ui-wells-list-grid
+      *ngIf="isGridSwitcherByWell"
+      [wellShortInfoList]="wellShortInfoList"
+    ></pna-ui-wells-list-grid>
+  </div>
+</div>

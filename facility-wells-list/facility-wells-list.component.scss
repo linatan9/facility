@@ -1,0 +1,54 @@
+@import '../../shared/styles/variables';
+
+:host {
+  display: flex;
+  height: 100%;
+
+  .empty-wells-list {
+    padding: 10px;
+    color: $font-dark-gray;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .wells-list {
+    width: 220px;
+  }
+
+  .facility-well-container {
+    padding: 0 20px;
+
+    &.selected-facility-well {
+      background: $selected-facility-equip-color;
+    }
+
+    .facility-well {
+      padding: 0 1rem 0 1rem;
+      height: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+      border-bottom: solid 1px $facility-column-border-color;
+
+      &_status-not-abandoned, &_status-abandoned {
+        width: 12px;
+        min-width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-left: 1rem;
+      }
+
+      &_status-not-abandoned {
+        background: $status-partially-null;
+      }
+
+      &_status-abandoned {
+        background: $status-final-approved;
+      }
+    }
+  }
+}
+

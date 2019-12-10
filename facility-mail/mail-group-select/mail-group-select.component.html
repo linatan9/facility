@@ -1,0 +1,52 @@
+<section class="mail-groups-select">
+  <ng-select
+    [items]="mailGroups | async"
+    placeholder="Recipients:"
+    [multiple]="true"
+    bindLabel="title"
+    bindValue="title"
+    [formControl]="mailGroupsControl">
+
+    <ng-template ng-label-tmp let-item="item" let-clear="clear">
+      <span class="ng-value-label">{{ item.title }}</span>
+      <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+    </ng-template>
+  </ng-select>
+</section>
+
+<section class="selected-equipment">
+  <div class="selected-equipment-header">
+    <span class="title">Selected Equipment:</span>
+    <span class="quantity">{{ totalSelectedEquipNumber }} items</span>
+  </div>
+
+  <div class="selected-equipment-tree">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <!-- This is the tree node template for leaf nodes -->
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <!-- use a disabled button to provide padding for tree leaf -->
+        <button mat-icon-button disabled class="expand-button"></button>
+        <div class="not-expandable-leaf">
+          <div class="item-indicator"></div>
+          <div class="equip-data">
+            <span class="type-description">{{ node.type }}</span>
+            <span class="classes-description">{{ node.classes }}</span>
+          </div>
+
+        </div>
+      </mat-tree-node>
+      <!-- This is the tree node template for expandable nodes -->
+      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+        <button mat-icon-button matTreeNodeToggle class="expand-button"
+                [attr.aria-label]="'toggle ' + node.type">
+          <i class="mdi" [ngClass]="{'mdi-menu-down': treeControl.isExpanded(node), 'mdi-menu-right': !treeControl.isExpanded(node)}"></i>
+        </button>
+        <div class="expandable-leaf">
+          {{ node.type }}
+          <span *ngIf="isEquipSumVisible(node.type) && node.children" class="selected-quip-sum">({{ node.children.length }})</span>
+        </div>
+      </mat-tree-node>
+    </mat-tree>
+  </div>
+
+</section>

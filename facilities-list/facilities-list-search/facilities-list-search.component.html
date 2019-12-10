@@ -1,0 +1,7 @@
+<ng-select
+  [items]="facilities"
+  bindLabel="name"
+  bindValue="id"
+  [(ngModel)]="selectedFacilityId"
+  (change)="onChange($event)">
+</ng-select>

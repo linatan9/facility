@@ -1,0 +1,24 @@
+<div class="wells-list">
+  <pna-ui-facility-column-decoration>
+    <div scrollable class="scrollable-content">
+      <div class="empty-wells-list" *ngIf="!equipment?.content.length">There are no wells</div>
+      <div
+        *ngFor="let wellEquip of equipment?.content"
+        (click)="onSelectFacilityWell(wellEquip)"
+        class="facility-well-container"
+        [ngClass]="{ 'selected-facility-well': selectedWellId === wellEquip.id }">
+        <div class="facility-well">
+          <span>{{ wellEquip.name }}</span>
+          <div class="facility-well_status-not-abandoned" [ngClass]="{'facility-well_status-abandoned': wellEquip.abandoned}"></div>
+        </div>
+      </div>
+    </div>
+  </pna-ui-facility-column-decoration>
+</div>
+<pna-ui-well-equipments-list
+  *ngIf="selectedWellId"
+  [selectedWellId]="selectedWellId"
+  [facility]="selectedWell"
+  [facilityWells]="equipment.content"
+  (selectedFlowlineWell)="onSelectedFlowlineWell($event)">
+</pna-ui-well-equipments-list>

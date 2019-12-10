@@ -1,0 +1,159 @@
+<pna-ui-facility-column-decoration class="flowline">
+  <div scrollable class="scrollable-content">
+    <div class="flowline-info" *ngIf="flowline">
+
+      <div class="flowline-info_data">
+
+        <div class="flowline-info_data_title">Flowline {{ flowLineId }}</div>
+
+        <div class="flowline-info_container">
+          <div class="flowline-info_selection">
+            <div class="flowline-general-info">
+              <mat-form-field floatLabel="always">
+                <input #cutCapDate matInput readonly [placeholder]="cutCapDatePlaceholder" [value]="cutCapDateValue">
+              </mat-form-field>
+              <mat-form-field floatLabel="always">
+                <textarea matInput
+                  [placeholder]="cutCapCommentPlaceholder"
+                  [formControl]="flowlineForm.get('cutCapComment')"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="3"></textarea>
+                <mat-error *ngIf="flowlineForm.get('cutCapComment').hasError('maxlength')">
+                  Comment should be less than 500 symbols
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="flowline-abdn-status">
+              <div class="flowline-info_status-title">Abandonment Status</div>
+              <mat-radio-group [formControl]="flowlineForm.get('additionalAbandStatus')">
+                <div>
+                  <mat-radio-button [value]="flowlineAbndStatuses.REMOVED" (click)="clearAbdnStatus()" [customTooltip]="tooltipRemovedVar">Removed</mat-radio-button>
+                </div>
+                <mat-form-field *ngIf="flowlineForm.get('additionalAbandStatus').value === flowlineAbndStatuses.REMOVED">
+                  <mat-select [formControl]="flowlineForm.get('abandStatus')">
+                    <mat-option *ngFor="let removedType of additionalRemovedStatuses"
+                                [value]="removedType.value"
+                    >
+                      {{ removedType.displayValue }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="flowlineForm?.get('abandStatus').hasError('required')">You must enter a value</mat-error>
+                </mat-form-field>
+                <div>
+                  <mat-radio-button [value]="flowlineAbndStatuses.ABANDONED"  (click)="clearAbdnStatus()" [customTooltip]="tooltipAbandonedVar">Abandoned</mat-radio-button>
+                </div>
+                <mat-form-field *ngIf="flowlineForm.get('additionalAbandStatus').value === flowlineAbndStatuses.ABANDONED">
+                  <mat-select [formControl]="flowlineForm.get('abandStatus')">
+                    <mat-option *ngFor="let abandonedType of additionalAbandonedStatuses"
+                                [value]="abandonedType.value"
+                    >
+                      {{ abandonedType.displayValue }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="flowlineForm?.get('abandStatus').hasError('required')">You must enter a value</mat-error>
+                </mat-form-field>
+              </mat-radio-group>
+              <mat-radio-group [formControl]="flowlineForm.get('abandStatus')">
+                <div>
+                  <mat-radio-button [value]="flowlineAbndStatuses.RETIRED" (click)="clearAdditionalAbandStatus()" [customTooltip]="tooltipRetiredVar">Retired</mat-radio-button>
+                </div>
+                <mat-radio-button [value]="flowlineAbndStatuses.OTHER"  (click)="clearAdditionalAbandStatus()">Other</mat-radio-button>
+              </mat-radio-group>
+
+            </div>
+          </div>
+
+
+          <div class="flowline-info_editable" *ngIf="isAbandStatus()">
+            <mat-form-field *ngIf="isAbandonedStatus() || isRemovedStatus() || isOtherStatus()">
+              <input
+                matInput
+                readonly
+                placeholder="{{ 'Date of Return' }}"
+                [matDatepicker]="pickerFrom"
+                [formControl] = "flowlineForm.get('returnDate')"
+                (click)="pickerFrom.open()"
+              >
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field
+              floatLabel="always"
+              *ngIf="isNotOtherStatus()"
+            >
+              <textarea
+                matInput
+                placeholder="Footage Abandoned"
+                [formControl]="flowlineForm.get('footage')"
+                cdkTextareaAutosize
+                autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="3">
+              </textarea>
+              <mat-error *ngIf="flowlineForm?.get('footage').hasError('maxlength')">
+                Comment should be less than 400 symbols
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+              <textarea
+                matInput
+                placeholder="{{ 'Comment' }}"
+                [formControl]="flowlineForm.get('comment')"
+                cdkTextareaAutosize
+                autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="3">
+              </textarea>
+              <mat-error *ngIf="flowlineForm?.get('comment').hasError('maxlength')">
+                Comment should be less than 400 symbols
+              </mat-error>
+            </mat-form-field>
+
+            <div class="flowline-info_editable_user-block">
+              <mat-form-field>
+                <input
+                  matInput
+                  readonly
+                  placeholder="{{ 'Abandoned Date' }}"
+                  [matDatepicker]="abandDate"
+                  [formControl] = "flowlineForm.get('abandDate')"
+                  (click)="abandDate.open()"
+                >
+                <mat-datepicker-toggle matSuffix [for]="abandDate"></mat-datepicker-toggle>
+                <mat-datepicker #abandDate></mat-datepicker>
+              </mat-form-field>
+              <div class="flowline-info_editable_user-block_info">
+                <div class="flowline-info_editable_user-block_info__name" *ngIf="flowline.updatedByUser">
+                  <span>Update By: </span>
+                  <span>{{ flowline.updatedByUser }}&nbsp;</span>
+                  <span> </span>
+                </div>
+                <div class="flowline-info_editable_user-block_info__date" *ngIf="flowline.updatedOn">
+                  <span>Update On: </span>
+                  <span>{{ dateHelper.formatDateWithoutTimeZone(flowline.updatedOn, true) }}</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <pna-ui-facility-edit-buttons
+          (reset)="reset()"
+          (update)="update()"
+          [isUpdateDisabled]="flowlineForm.invalid && !isCutCapCommentChanged"
+        >
+        </pna-ui-facility-edit-buttons>
+      </div>
+
+    </div>
+  </div>
+</pna-ui-facility-column-decoration>
+<pna-ui-flowline-abandoned-tooltip #tooltipAbandoned class="hide"></pna-ui-flowline-abandoned-tooltip>
+<pna-ui-flowline-removed-tooltip #tooltipRemoved class="hide"></pna-ui-flowline-removed-tooltip>
+<pna-ui-flowline-retired-tooltip #tooltipRetired class="hide"></pna-ui-flowline-retired-tooltip>
+

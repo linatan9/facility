@@ -1,0 +1,150 @@
+@import '../../../shared/styles/variables';
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  .hide {
+    display: none;
+  }
+
+  .flowline {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+
+    .scrollable-content {
+      height: 100%;
+    }
+
+    .flowline-info {
+      padding:  0.5rem 4rem 1rem 1rem;
+      height: 100%;
+
+      mat-form-field {
+        margin-top: 0.5rem;
+        width: 100%;
+
+        textarea {
+          resize: none;
+          white-space: normal;
+          height: 22px;
+        }
+      }
+
+      &_container {
+        display: flex;
+
+        .flowline-info_selection {
+          width: 50%;
+          margin-right: 28px;
+        }
+
+        .flowline-info_editable {
+          width: 50%;
+          &_user-block {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            mat-form-field {
+              width: 50%;
+            }
+            &_info {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              font-size: 0.85rem;
+              &__name, &__date {
+                margin-bottom: 5px;
+                span:first-child {
+                  color: $font-dark-gray;
+                  font-weight: bold;
+                }
+                span:last-child {
+                  color: $font-gray;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &_data {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        &_title {
+          font-size: $flowline-title-font-size;
+        }
+      }
+
+      &_status-title, &_abdn_complete-title {
+        color: $font-dark-gray;
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+
+      &_abdn_complete {
+        display: flex;
+        flex-direction: row;
+        mat-checkbox {
+          margin-right: 2rem;
+          margin-top: 0.5rem;
+        }
+      }
+
+      mat-radio-group {
+        display: flex;
+        flex-direction: column;
+        mat-radio-button {
+          margin-top: 0.7rem;
+        }
+      }
+
+      pna-ui-facility-edit-buttons {
+        margin-top: 1.5rem;
+        height: inherit;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+
+      ::ng-deep {
+        .mat-radio-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .mat-radio-inner-circle {
+          background-color: $primary-blue;
+          width: 0.72rem;
+          height: 0.72rem;
+          top: 4px;
+          left: 0.25rem;
+
+          @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            top: 4.5px;
+          }
+        }
+
+        .mat-radio-outer-circle {
+          position: relative;
+          border-width: 1px;
+          border-color: $flowline-radio-button-border-color;
+          width: 0.625rem;
+          height: 0.625rem;
+        }
+
+        .mat-checkbox-inner-container {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}

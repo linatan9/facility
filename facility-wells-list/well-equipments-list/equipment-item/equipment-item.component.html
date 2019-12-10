@@ -1,0 +1,12 @@
+<div class="equipment" (click)="onSelectEquip()" [ngClass]="{'selected-equipment': equipType === selectedEquipType}">
+  <div class="equipment_icon equipment__{{equipType}}-icon"></div>
+  <div class="equipment-info">
+    <div class="equipment-info_title-data">
+      <span class="equipment-info_title-data__name">{{ facilityEquipTypes[equipType] }}</span>&nbsp;
+      <span class="equipment-info_title-data__equip-number">({{ equipment?.content?.length }})</span>
+    </div>
+    <div class="equipment-info__crew-on" *ngIf="selectedEquipType === 'wells'">
+      <span>Crew-On Date:&nbsp; {{ getFormattedCutCapDate() }}</span>
+    </div>
+  </div>
+</div>

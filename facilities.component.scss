@@ -1,0 +1,43 @@
+@import "../shared/styles/variables";
+
+:host {
+  display: block;
+  height: calc(100vh - #{$default-header-height} - #{$main-footer-height});
+  position: relative;
+
+  .facilities-container {
+    display: block;
+    height: 100%;
+    margin: 0 30px;
+
+    .facilities-list-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .facility-label {
+    display: inline-flex;
+    width: 100%;
+    font-size: .875rem;
+    margin-bottom: 17px;
+  }
+
+  .facility-switcher {
+    display: inline-flex;
+    color: #3f48cc;
+    font-size: .875rem;
+    text-decoration: underline;
+  }
+
+  .facility-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px 0 0 0;
+  }
+}
